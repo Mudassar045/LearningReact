@@ -25,5 +25,5 @@ chrome-user-data
 
 # ignore practice directories
 
-react-one/
-thinking-in-react/
+./react-one/
+./thinking-in-react/

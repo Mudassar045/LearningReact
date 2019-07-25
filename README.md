@@ -64,6 +64,113 @@ Here are the following tasks, that will be completed
 
 - Add styling of your choice
 
+## ES6 Learning
+
+- Classes
+
+    ```
+
+    class Person
+    {
+      constructor(name, age){
+        this.name = name;
+        this.age  = age;
+      }
+
+      getName(){
+        console.log(this.name);
+      }
+      getAge(){
+        console.log(this.age);
+      }
+    }
+
+    // creating object
+    const person = new Person("Mudassar",23);
+    // calling methods
+    person.getName();
+    person.getAge();
+
+    ```
+  You can check out example on [JSBIN - Mudassar045](https://jsbin.com/wemudom/edit?js,console)
+
+- Exports and Imports (Modules)
+
+  * Exports
+    
+    Let say we have two files
+
+    ```
+    # person.js
+    const person = {
+      name: "Mudassar"
+    }
+    ```
+    
+    > export default person
+
+    ```
+    # utility.js
+    const cleaner = ()=>{}
+    const baseData = 10
+    ```  
+    > export clearner
+
+    > export baseData
+
+  * import
+
+    If ``Default Exported``
+    > import person from "./person.js"
+    
+    OR
+
+    > import prs from "./"
+
+    If ``Named Exported``
+
+    > import {baseData} from "./utility"
+
+    > import {clearner} from "./utility"
+
+- Arrow Function
+
+  There are two types of arrow function available in ``ES6``
+
+  - **Block Body**
+    Block body arrow function must contains ``return`` and ``curly braces``
+
+    ```
+    const ret = (num) => { return num===1 ? true : false }
+    ```
+
+  - **Consise Body**
+
+    ```
+    const ret = (num) => num===1 ? true : false
+    ```
+    OR
+
+    ```
+    const ret = num => num===1 ? true : false
+    ```
+
+    Similarly
+
+    ```
+    const ret = (alpabet,num) => num==alphabet ? true : false
+    ```
+
+  * For more knowledge - visit [ES6 Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+
+- Spread and Rest Operators
+
+  * Spread operator works with ``arrays and objects``
+   
+  * Rest operator works with ``function arguments``
+
+  * You can check out example on [JSBIN - Mudassar045](https://jsbin.com/ladajey/3/edit?js,output)
+
 <br/>
 
 [:arrow_up: Back to top](#-learning-reactjs-)
