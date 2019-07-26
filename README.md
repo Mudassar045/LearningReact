@@ -171,6 +171,121 @@ Here are the following tasks, that will be completed
 
   * You can check out example on [JSBIN - Mudassar045](https://jsbin.com/ladajey/3/edit?js,output)
 
+- Named parameters
+   
+   Here is the example code for named params
+
+   ```
+   function sum({ a:a, b:b}) {
+      console.log(a+'+'+b);
+      if(a==undefined) a=0;
+      if(b==undefined) b=0;
+      return (a+b);
+    }
+
+    // will work (returns 9 and 3 respectively)
+    console.log(sum({a:4,b:5}));
+    console.log(sum({a:3}));
+
+    // will not work (returns 0)
+    console.log(sum(4,5));
+    console.log(sum(4));
+   ```
+- Destructoring Assignment
+
+  The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+
+  ```
+  var a, b, rest;
+[a, b] = [10, 20];
+console.log(a); // 10
+console.log(b); // 20
+
+[a, b, ...rest] = [10, 20, 30, 40, 50];
+console.log(a); // 10
+console.log(b); // 20
+console.log(rest); // [30, 40, 50]
+
+({ a, b } = { a: 10, b: 20 });
+console.log(a); // 10
+console.log(b); // 20
+
+
+// Stage 4(finished) proposal
+({a, b, ...rest} = {a: 10, b: 20, c: 30, d: 40});
+console.log(a); // 10
+console.log(b); // 20
+console.log(rest); // {c: 30, d: 40}
+  ```
+
+  [ES6 - Destructoring Assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+
+## Learning about Redux
+
+   - What is Redux - Redux is a predictable state container for JavaScript apps.
+
+   - **Basics Learning**
+
+     * **Actions**
+
+       Actions are ``payloads of information`` that **send data** from your application to your **store**. They are the only source of information for the store.
+
+       > const ADD_ITEM = 'ADD_ITEM'
+
+       ```
+       {
+         type: ADD_ITEM,
+         text: 'Learning about Redux'
+       }
+       ```
+
+       **Action Creators**
+
+       Function that create actions are called ``action creators``. For example
+
+       ```
+       function addItem(text)
+       {
+         return{
+           type: ADD_ITEM,
+           text
+         }
+       }
+       ```
+       **Action Dispatch**
+
+       To dispatch an action, just passed to ``store.dispath()`` method
+
+       > dispatch( addItem( text ) )
+
+       **Bound Action Creator**
+
+       ```
+       {
+         const boundAddItem = text => dispatch( addItem(item) ); 
+       }
+       ```
+       Now you can call them directly as follow
+       > boundAddItem(text)
+
+     * **Reducers**
+
+        - Reducers specify how the application's state changes in response to actions sent to the store.
+        - Reducer is a pure function
+        - Must think of ``shape of application state`` in Redux
+        - Reducer takes previous state, action and return next state
+
+          > ( prevState, action ) => nextState
+        
+        *Things you should Never Do in Redux (pure function)*
+
+        - Mutate its arguments
+        - Perform side effects like API calls and routing transitions
+        - Call ``non-pure functions``, e.g. `Date.now()` or `Math.random()`
+
+     * **Store**
+     * **Data Flow**  
+
 <br/>
 
 [:arrow_up: Back to top](#-learning-reactjs-)
