@@ -1,16 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-const person = (props) => {
-    return(
-        <div>
-            {/* accessing dynamic attributes */}
-            <h3> Hello, I'm {props.name} and my {props.age} years old</h3>
-            {/* working with props */}
+import './Person.css';
+
+const person = ( props ) => {
+    return (
+        <div className="Person">
+            <p onClick={props.click}>I'm {props.name} and I am {props.age} years old!</p>
             <p>{props.children}</p>
-            <p>{props.parent}</p>
-        </div>        
-    ) 
+            <input type="text" onChange={props.changed} value={props.name} />
+        </div>
+    )
 };
 
-// to export the change
 export default person;

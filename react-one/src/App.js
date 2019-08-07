@@ -1,75 +1,86 @@
 import React, { Component } from 'react';
 import './App.css';
-// import Person from './Person/Person'
+import Person from './Person/Person';
 
 class App extends Component {
+  state = {
+    persons: [
+      { name: 'Max', age: 28 },
+      { name: 'Manu', age: 29 },
+      { name: 'Stephanie', age: 26 }
+    ],
+    otherState: 'some other value',
+    showPersons: false
+  }
 
-  // understanding state
+  switchNameHandler = ( newName ) => {
+    console.log('Was clicked!');
+    // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
+    this.setState( {
+      persons: [
+        { name: newName, age: 28 },
+        { name: 'Manu', age: 29 },
+        { name: 'Stephanie', age: 27 }
+      ]
+    } )
+  }
 
- state = {
-    list,
-  };
+  nameChangedHandler = ( event ) => {
+    this.setState( {
+      persons: [
+        { name: 'Max', age: 28 },
+        { name: event.target.value, age: 29 },
+        { name: 'Stephanie', age: 26 }
+      ]
+    } )
+  }
 
-  // state = {
-  //   person:[
-  //     {name: "Mudassar", age: "24"},
-  //     {name: "Azam", age: "24"},
-  //   ]
-  // }
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState( { showPersons: !doesShow } );
+  }
 
-  // handling method
+  render () {
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    };
 
-  // switchNameHandler = () => {
-      
-  //   //alert("I'm clicked")
-  //   // DON'T DO THIS : this.state.person[1].name = "Muneeb";
-  //   this.setState({
-  //     person:[
-  //       {name: "Mudassar Ali", age:23}
-  //     ]
-  //   })
-  // }
+    let persons = null;
 
-  // render() 
-  // {
-  //   return (
-  //     <div className="App">
-  //       <h2>Hi, I'm React Learner</h2>
-  //       {/* DON'T DO THIS onClick="{this.switchNameHandler(), this will immediately fire up the event}" */}
-  //       <button onClick={this.switchNameHandler}>Click me - I will blown out your mind</button>
-  //       {/* accessing state properties */}
-  //       <Person name={this.state.person[0].name} age={this.state.person[0].age}>I love to do programming</Person>
-  //       {/* <Person name="Mudassar" age="23">I love to do programming, fucking programming</Person> */}
-  //     </div>
-  //   );
-  //   //return React.createElement("div", {className:'App'}, React.createElement('h2',null,'Legacy Syntax of React'));
-  // }
-  render(){
+    if ( this.state.showPersons ) {
+      persons = (
+        <div>
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age} />
+          <Person
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+            click={this.switchNameHandler.bind( this, 'Max!' )}
+            changed={this.nameChangedHandler} >My Hobbies: Racing</Person>
+          <Person
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age} />
+        </div>
+      );
+    }
+
     return (
       <div className="App">
-        {this.state.list.map(item => (
-          <div key={item.objectID}>
-            <span>
-              <a href={item.url}>{item.title}</a>
-            </span>
-            <span>{item.author}</span>
-            <span>{item.num_comments}</span>
-            <span>{item.points}</span>
-          </div>
-        ))}
+        <h1>Hi, I'm a React App</h1>
+        <p>This is really working!</p>
+        <button
+          style={style}
+          onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        {persons}
       </div>
     );
+    // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
 }
 
-const list = [
-  {
-    title: "React",
-    url: "https://facebook.github.io/react/",
-    author: "Jordan Walke",
-    num_comments: 3,
-    points: 4,
-    objectID: 0
-  }
-];
 export default App;
